@@ -1,0 +1,16 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<center><a href="{% url 'app:topics' %}"><img src= "{% static "images/forum.png" %}"></a></center>
+
+<p><a href="{% url 'app:topic' topic.id %}">{{ topic }}</a></p>
+
+<p>Add a new entry:</p>
+<form action="{% url 'app:new_entry' topic.id %}" method='post'>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button name='submit'>add entry</button>
+</form>
+
+{% endblock content %}

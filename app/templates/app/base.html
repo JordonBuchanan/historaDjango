@@ -1,0 +1,135 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+      <script type="text/javascript" src="scripts/jquery.cycle.all.2.74.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Supermercado+One" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
+      <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+      <title>Histora</title>
+      
+      {% bootstrap_css %}
+      {% bootstrap_javascript %}
+      
+  </head>
+<style>
+    body{
+        font-family: "Times New Roman", Times, sans-serif;
+    }
+    #icon {
+        max-width: 35px;
+    }
+    #navbar{
+        background-color:#809bff;
+    }
+    a{
+        color: white;
+    }
+        a:active{
+            color: white;
+            
+        }
+    a:hover{
+        color: rgba(255, 255, 255, 0.8);
+    }
+#slideshow, img.bgM {
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:-9999;
+}
+    .navbar-brand{
+        color:white;
+        text-shadow: 2px 3px 3px black;
+        font-family: 'Cinzel Decorative', cursive;
+    }
+    
+$(document).ready(function() {
+	$('#slideshow').cycle({
+	fx: 'fade',
+	pager: '#smallnav',
+	pause:   1,
+	speed: 1800,
+	timeout:  3500
+	});
+});
+</style>
+   
+<nav class="navbar navbar-expand-lg" id="navbar">
+  <a class="navbar-brand" href="#"><h3>H</h3></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'app:index' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'app:topics' %}">Forum <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'app:media' %}">Media <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+       <a class="nav-link" href="#">{{user.username }} <span class="sr-only">(current)</a>
+      </li>
+      <li class="nav-item active">
+       <a class="nav-link" href="{% url 'users:logout' %}">Logout <span class="sr-only">(current)</span></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+       <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+      </li>
+     {% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+  <body>
+   <div id="slideshow">
+  <img src="{% static "images/historadante.png" %}" class="bgM"/>
+  <img src="{% static "images/historacaesar.png" %}" class="bgM"/>
+  <img src="{% static "images/historaBG7.png" %}" class="bgM"/>
+</div>
+                                               
+    <div class="container-fluid">
+            </div>
+    </body>
+            {% block header %}{% endblock header %}
+            {% block content %}{% endblock content %}
+      
+</html>

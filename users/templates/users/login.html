@@ -1,0 +1,36 @@
+{% extends "app/base.html" %}
+{% load bootstrap4 %}
+
+{% block header %}
+<style>
+    #login{
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+</style>
+<br>
+<h2><p class="text-center"><strong>Log into your account!</strong></p></h2>
+{% endblock header %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4" id="login" align="center">
+  <form method="post" action="{% url 'users:login' %}" class="form">
+    {% csrf_token %}
+    
+    {% bootstrap_form form %}
+    
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">log in</button>
+    {% endbuttons %}
+
+    <input type="hidden" name="next" value="{% url 'app:index' %}" />
+  </form>
+    </div>
+    <div class="col-sm-4">
+    </div>
+   </div> 
+</div>
+{% endblock content %}

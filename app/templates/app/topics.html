@@ -1,0 +1,38 @@
+{% extends "app/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block header %}
+  <center><img src= "{% static "images/forum.png" %}"/><br></center>
+<style>
+    #topics{
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+</style>
+{% endblock header %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+   <div class="col-sm-2">
+   </div>
+   <div class="col-sm-8" id="topics">
+  <ul>
+    {% for topic in topics %}
+      <li>
+          <h3><hr>
+              <a href="{% url 'app:topic' topic.id %}">{{ topic }}</a>
+          <hr></h3>
+      </li>
+    {% empty %}
+      <li>No topics have been added yet.</li>
+    {% endfor %}
+       </ul>
+  <a href="{% url 'app:new_topic' %}"><button type="button" class="btn btn-primary">Add New Topic</button></a>
+       <br><br>
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+    </div>
+{% endblock content %}
